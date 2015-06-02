@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>This is just a personal reference of JS OOP!</title>
+	</head>
+	<body>
+
+		<script>
+
+
+			var string = "Hello!";
+			console.log(string);
+			document.write(string);
+			//alert(string);
+
+			var object1 = {
+				numberOfFruits: 7,
+				/**howMany: function returnNumber () {
+					return this.numberOfFruits;					
+				}**/
+
+				howMany: function () {
+					return this.numberOfFruits;
+				}
+			}
+
+			function addNumbers(a,b){
+				return a+b;
+			}
+
+			console.log(addNumbers(1,2));
+
+			console.log(object1.howMany());
+
+
+			function returnTheValues () {
+				return this.val;
+			}
+
+			var firstObject = {
+				get: returnTheValues,
+				val: 42
+			}
+
+			var secondObject = {
+				get: returnTheValues,
+				val: 3.14519
+			}
+
+
+			console.log(secondObject.get() + firstObject.get());
+
+			var thirdObject = firstObject;
+			console.log(thirdObject.get());
+
+			thirdObject.val = 3.14519;
+			console.log(firstObject.get());
+	
+			function thisIsATest () {return returnTheValues.prototype};
+
+			console.log(thisIsATest());
+
+
+
+
+			//if a common method, put in a prototype and extend objects from that prototype (as children of the prototype)
+			var answer = {
+
+				get: function getValue () {
+					return this.val;
+				},
+				val: 42
+			};
+
+			var objectOne = Object.create(answer);
+			objectOne.val = 20;
+
+			var objectTwo = Object.create(answer);
+			objectTwo.val = 3.14915;
+
+			console.log("The object's value is " + objectOne.get());
+			console.log("The second object's value is " + objectTwo.get());
+			
+
+
+
+			//extending a class but forcing the method to be called from that object
+			var aClass = {
+				aValue: 42,
+				returnTheValue: function getTheAnswer () {
+					return this.aValue;
+				}
+			};
+
+			console.log("The requested value is " + aClass.returnTheValue());
+
+			var aSecondClass = Object.create(aClass);
+
+			//changes the value but the method to return the value calls this.aValue from the prototype
+			aSecondClass.aValue = 3.14;
+
+			//this is taking the method from the first object but forcing the call on the second object
+			aSecondClass.returnTheValue = function getTheAnswer () {
+				return aClass.returnTheValue.call(this); //OR return aClass.returnTheValue.call(aSecondClass);
+			};
+
+			console.log("The value of the second object is " + aSecondClass.returnTheValue());
+
+
+
+
+			//instantiating objects and setting the data values using a constructor
+			var proto = {
+				val: 100,
+				construct: function fn0 (value) { //the conscructor only sets the data
+					this.val = value;
+				},
+				get: function fn1 () {
+					return this.val;
+				}
+			};
+
+			var instance = Object.create(proto);
+			instance.construct(3); //instance is set the data
+			console.log("The instantiated object's value should be 3 and not 100. The value is: " + instance.get());
+
+		</script>
+	
+	</body>
+<html>
+
