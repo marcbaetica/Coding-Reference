@@ -1,0 +1,6 @@
+javac write.java 
+java write 
+java -cp . write
+javac args_program.java 
+java -cp . args_program "hello" "hello1" "hello2"
+history 7 >> runcli
