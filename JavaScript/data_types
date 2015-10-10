@@ -1,0 +1,70 @@
+Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in JavaScript and what properties they have; these can be used to build other data structures. When possible, comparisons with other languages are drawn.
+
+Dynamic typing
+JavaScript is a loosely typed or a dynamic language. That means you don't have to declare the type of a variable ahead of time. The type will get determined automatically while the program is being processed. That also means that you can have the same variable as different types:
+
+var foo = 42;    // foo is now a Number
+var foo = "bar"; // foo is now a String
+var foo = true;  // foo is now a Boolean
+Data types
+The latest ECMAScript standard defines seven data types:
+
+Six data types that are primitives:
+Boolean
+Null
+Undefined
+Number
+String
+Symbol (new in ECMAScript 6)
+and Object
+Primitive values
+All types except objects define immutable values (values, which are incapable of being changed). For example and unlike to C, Strings are immutable. We refer to values of these types as "primitive values".
+
+Boolean type
+
+Boolean represents a logical entity and can have two values: true, and false.
+
+Null type
+
+The Null type has exactly one value: null. See null and Null for more details.
+
+Undefined type
+
+A variable that has not been assigned a value has the value undefined. See undefined and Undefined for more details.
+
+Number type
+
+According to the ECMAScript standard, there is only one number type: the double-precision 64-bit binary format IEEE 754 value (number between -(253 -1) and 253 -1). There is no specific type for integers. In addition to being able to represent floating-point numbers, the number type has three symbolic values: +Infinity, -Infinity, and NaN (not-a-number).
+
+To check for larger or smaller values than +/-Infinity, you can use the constants Number.MAX_VALUE or Number.MIN_VALUE and starting with ECMAScript 6, you are also able to check if a number is in the double-precision floating-point number range using Number.isSafeInteger() as well as Number.MAX_SAFE_INTEGER and Number.MIN_SAFE_INTEGER. Beyond this range, numbers in JavaScript are not safe anymore.
+
+The number type has only one integer that has two representations: 0 is represented as -0 and +0. ("0" is an alias for +0). In the praxis, this has almost no impact. For example +0 === -0 is true. However, you are able to notice this when you divide by zero:
+
+> 42 / +0
+Infinity
+> 42 / -0
+-Infinity
+Although a number often represents only its value, JavaScript provides some binary operators. These can be used to represent several Boolean values within a single number using bit masking. This is usually considered a bad practice, however, JavaScript offers no other means to represent a set of Booleans (like an array of Booleans or an object with Boolean values assigned to named properties). Bit masking also tends to make code more difficult to read, understand, and maintain. It may be necessary to use such techniques in very constrained environments, like when trying to cope with the storage limitation of local storage or in extreme cases when each bit over the network counts. This technique should only be considered when it is the last measure that can be taken to optimize size.
+
+String type
+
+JavaScript's String type is used to represent textual data. It is a set of "elements" of 16-bit unsigned integer values. Each element in the String occupies a position in the String. The first element is at index 0, the next at index 1, and so on. The length of a String is the number of elements in it.
+
+Unlike in languages like C, JavaScript strings are immutable. This means that once a string is created, it is not possible to modify it. However, it is still possible to create another string based on an operation on the original string. For example:
+
+A substring of the original by picking individual letters or using String.substr().
+A concatenation of two strings using the concatenation operator (+) or String.concat().
+Beware of "stringly-typing" your code!
+
+It can be tempting to use strings to represent complex data. Doing this comes with short-term benefits:
+
+It is easy to build complex strings with concatenation.
+Strings are easy to debug (what you see printed is always what is in the string).
+Strings are the common denominator of a lot of APIs (input fields, local storage values, XMLHttpRequest responses when using responseText, etc.) and it can be tempting to only work with strings.
+With conventions, it is possible to represent any data structure in a string. This does not make it a good idea. For instance, with a separator, one could emulate a list (while a JavaScript array would be more suitable). Unfortunately, when the separator is used in one of the "list" elements, then, the list is broken. An escape character can be chosen, etc. All of this requires conventions and creates an unnecessary maintenance burden.
+
+Use strings for textual data. When representing complex data, parse strings and use the appropriate abstraction.
+
+Symbol type
+
+Symbols are new to JavaScript in ECMAScript Edition 6. A Symbol is a unique and immutable primitive value and may be used as the key of an Object property (see below). In some programming languages, Symbols are called atoms. You can also compare them to named enumerations (enum) in C. For more details see Symbol and the Symbol object wrapper in JavaScript.
