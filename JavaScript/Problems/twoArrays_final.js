@@ -8,8 +8,8 @@ var count = 0;
 var finalArray = new Array();
 var alreadyExists;
 
-a1.forEach(function (item1, index1){
-	a2.forEach(function (item2, index2) {
+a1.forEach(function (item1){
+	a2.forEach(function (item2) {
 		if (item1 == item2) {
 			console.log("Found potential common element " + item1 + ".");
 
@@ -26,7 +26,7 @@ a1.forEach(function (item1, index1){
 
 			//add element to array
 			if (alreadyExists == false) {
-				finalArray.push(a1[a1.indexOf(item1)]);
+				finalArray.push(a1[a1.indexOf(item1)]);	//or better finalArray.push(item1);
 				count++;
 				console.log("\nThe array is now [" + finalArray + "] and the current count is " + count + "\n");
 			}
