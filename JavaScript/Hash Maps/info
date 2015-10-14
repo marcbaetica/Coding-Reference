@@ -1,0 +1,32 @@
+- used for fast insertion and retrieval of data (almost in constant time)
+- esentially a set of key-value pairs
+- keys or values can be any sort of object
+- keys can be anything but must be included in the value object
+
+
+Direct Access Tables
+(only when keys are integers, keys are distinct and can not be extremely large)
+to solve this issue we use the technique of HASHING
+
+Hashing
+hash function maps keys "randomly" into slots (array indices) of table T (array)
+
+
+
+
+
+Every javascript object is a simple hashmap which only accepts string value as its key, so you could write your code as:
+
+var map = {};	       // add a item
+map[key1] = value1;    // or remove it
+delete map[key1];      // or determine whether a key exists
+key1 in map;
+
+Object.keys(map).length	//to find the length of the map
+
+
+Note: You can use a number as a key map[2] = 'foo' but it gets cast to a string internally > map = { '2': 'foo' } 
+
+Javascript object is a real hashmap on its implementation, so the complexity on search is O(1), but there is no dedicated hashcode() function for javascript strings, it is implemented internally by javascript engine (V8, SpiderMonkey, JScript.dll, etc...)
+
+However, javascript today does not support other datatype except string as its key, ECMAv6 (harmony) would introduce a WeakMap class which accept any object as key, but it would be a long time...
