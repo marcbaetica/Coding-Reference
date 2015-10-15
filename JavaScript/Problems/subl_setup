@@ -1,0 +1,15 @@
+Set up JS compiler for sublime
+
+Node:
+sudo apt-get update
+sudo apt-get install nodejs
+
+Location:
+/home/ghostman/.config/sublime-text-3/Packages/User/Node.sublime-build 
+
+Specification:
+{
+    "cmd": ["node", "$file", "$file_base_name"],
+    "working_dir": "${project_path:${folder}}",
+    "selector": "*.js"
+}
