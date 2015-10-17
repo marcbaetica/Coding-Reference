@@ -1,0 +1,19 @@
+Clojure Data Structures: (esentially collections)
+
+
+Lists: within normal brackets but the clojure reader will always interpret the list as a function call so if you want a list that only contains data you need to quote it out. Inserting data at the beggining is very fast but getting the Nth element might be slow.
+
+Vectors: it's an array .. also a list but with a different runtime performance. Vectors provide a better performance improvement. Inserting at the Nth element is very fast. As a data structure its probably better to use a vector when needing a list.
+
+
+[1 2 3]  //3 elements in the list/vector
+'(1 2 3)  //need to quote the list so the reader knows it's a data
+
+
+Hash Maps:
+{1 2 3 4}  //pairs of data get mached: key 1 to value 2 and key 3 to value 4
+{:name "Marc", :learn "Clojure}  //associates the keyword name with Marc
+
+
+Sets:
+#{1 2 3 4}  //each argument needs to be unique
