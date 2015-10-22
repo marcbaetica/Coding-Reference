@@ -13,9 +13,11 @@
 
 - if (x !== "undefined") {(function () {return 10;})()}   //checking for a variable value before sending executing the function
 
-- strict-mode =
+- for using this:
+  - strict-mode =
+  - non-strict-mode = 
 
-- non-strict-mode = 
+- when to use JSON.stringify on console.log() .. also not on arrays
 
 */
 
@@ -42,15 +44,29 @@ console.log('\n');
 //asynchronous callbacks
 console.log("hello!");
 
+//for asynchronous
+/*
 setTimeout(function callback() {
 	console.log("Hello world from the timeout!");
 }, 0);
+*/
 
 function two () {
 	console.log("Hello World from the second function!");
 };
 
 two();
+
+
+
+
+
+
+console.log('\n');
+
+
+
+
 
 
 //math random
@@ -60,6 +76,18 @@ var random_N = Math.random();
 console.log(random_N);	//random number
 console.log(Math.floor(random_N*10));	//random number 0-10 rounded down to the nearest integer
 console.log(Math.floor((max-min+1) * random_N) + min);	//random number withing range ... +1 so it doesnt exclude max
+
+
+
+
+
+
+
+
+console.log('\n');
+
+
+
 
 
 
@@ -90,7 +118,10 @@ var test = (function() {
 
 
 
-//Closures
+
+
+
+//Closures -- TO FIX
 
 function celebrityName (firstName) {
     var nameIntro = "This celebrity is ";
@@ -108,3 +139,142 @@ var mjName = celebrityName ("Michael"); // At this juncture, the celebrityName o
 //mjName ("Jackson"); // This celebrity is Michael Jackson
 
 //NOTE: Need to figure out how "Jackson" isn't replacing "Michael"
+
+
+
+
+
+
+
+console.log('\n');
+
+
+//Arrays
+
+var ourArray  = [1, 2, 3, 4, 5];
+
+
+
+// Array.map()
+//iterates over a list + creates a new array
+//applies a function to each element
+//and emits the result as the new array (if you want to apply some changes to each element you should use map - converting a list of strings to uppercase)
+
+var newArray = ourArray.map(function (val) {
+  return val+1;
+});
+
+
+(function () {console.log(ourArray)}) ();
+
+(function () {console.log(newArray)}) ();
+
+
+// Array.forEach()
+//iterates over a list
+//and applies some operation with side effects on the original array to each list member (eg: saving each one to the database or if you want just iterate over all element you should use forEach)
+
+var ourNewArray = new Array();
+
+var forEachFunction = Array.prototype.forEach;
+forEachFunction.call(ourArray, function (element, index) {
+  ourNewArray[index] = element;
+});
+
+//that generica call was same as saying ourArray.forEach(callback);
+
+console.log('The expected same array = ' + ourNewArray);
+
+
+//as generical call
+var mapFunction = Array.prototype.map;
+var stringToArray = mapFunction.call('Hello World!', function(x) {return x});
+
+console.log(stringToArray);
+
+
+
+
+// Array.reduce
+//reduces array by iterating through array and adding the new value to previous (from index 1 to index length-1)
+//returns final sum
+
+var arraySum = ourArray.reduce(function (previousItem, currentItem, index) {
+    return previousItem + currentItem;
+});
+
+console.log('The sum for ourArray was: ' + arraySum);
+
+
+
+
+// Array.filter
+//creates new array and fills it in with the elements that pass the condition
+//returns the array at the end
+
+var arrayToFilter = [1,2,3,4,5,6,7,8,9,10];
+
+var filteredArray = Array.prototype.filter.call(arrayToFilter, function (value) {
+  return value >= 5;  //only pass in values larger or equal to 5
+});
+
+console.log("After filtering for values larger than or equal to 5 we get: " + filteredArray);
+
+
+
+
+// Array.sort
+//sorts array alphabeticallt/numerically growing
+//manipulates and returns the same array
+//optional argument passed in for comparing function for defining order
+
+var arrayToSort = ['beta', 'alpha', 'charlie'];
+
+console.log("The newly sorted array is: " + arrayToSort.sort());
+
+
+
+// Array.reverse
+//method transposes the elements of the calling array object in place
+//modifies the array and returns a refference to the array
+
+var arrayToReverse= [1,2,3,4,5,6,7];
+
+console.log("The newly reversed array is: " + arrayToReverse.reverse());
+
+
+
+// Array.concat
+//returns new array with added values (@ end of array obviously)
+//argument can also be another array that can be appended
+//does not alter the old array -> just makes and returns a new one
+
+
+var array1 = [1,2,3];
+var concatMe = [4,5,6];
+
+array1 = array1.concat(concatMe);
+console.log("The newly concatenated array is: " + array1);
+
+
+
+
+// String.split(' ')
+//creates and returns an array of elements divided by (element) argument (without includeing the element -> eg: space)
+
+
+var stringToSplit = "Split me into an array";
+
+var splittedArray = stringToSplit.split(' ');
+console.log("The newly splitted string into an array is: "+ splittedArray);
+
+
+
+
+// Array.join(' ')
+//creates and returns a string with (element) argument separating each time two strings are appended
+
+var joinMe = ["Split","me","into","an","array"];
+
+joinMe = joinMe.join(" ");
+console.log("The newly joined array into a string is: " + joinMe);
