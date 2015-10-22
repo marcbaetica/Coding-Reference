@@ -7,7 +7,7 @@ to add:
 - Hash maps
 
 _______________________________
-  JS:
+  JS: //to update
 - object_oriented_js.html
 - sttaacckk
 
