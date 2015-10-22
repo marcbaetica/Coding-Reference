@@ -278,3 +278,116 @@ var joinMe = ["Split","me","into","an","array"];
 
 joinMe = joinMe.join(" ");
 console.log("The newly joined array into a string is: " + joinMe);
+
+
+
+
+// String.replace
+//
+
+
+// String.toLowerCase
+//
+
+
+
+//finding the longest word
+function findLongestWord(str) {
+  
+  var wordCount = 0;
+  var champion = 0;
+  var strArray = str.split('');
+  console.log(str.split(''));
+  
+  for (var i=0; i<str.length; i++) {
+    if (strArray[i] !== ' ') {
+      wordCount++;
+      console.log("not space " + strArray[i]);
+    }
+    if (strArray[i] === ' ') {
+      if (wordCount>=champion) {
+
+        console.log("space " + strArray[i]);
+
+        champion = wordCount;
+        console.log("Champion Set! " + champion);
+
+
+        wordCount = 0;
+      }
+      else {console.log("Smaller");}
+        wordCount = 0;
+    }
+  }
+  //for end
+  if (wordCount>=champion) {
+
+        champion = wordCount;
+        console.log("Champion Set! " + champion);
+  
+  }  
+  
+  
+  console.log(champion);
+}
+
+
+findLongestWord("What if we try a super-long word such as otorhinolaryngology");
+
+
+
+console.log('\n');
+
+
+
+
+// String.charAt(index)
+//selects and returns a particular character at a given location within the string... good if we want to modify that particular element and append back the rest
+// String.slice(beginIndex, [endIndex])
+//creates and returns a new string sliced from a particular index of interest onward up to (but excluding endIndex)
+//String.toUpperCase(element);
+//to detail
+
+//Return the provided string with the first letter of each word capitalized. Make sure the rest of the word is in lower case.
+
+function titleCase(str) {
+  
+  
+  //make all lwc
+  var modifiedStr = str.toLowerCase();
+
+  //make first to uppercase
+  modifiedStr = modifiedStr.charAt(0).toUpperCase() + modifiedStr.slice(1);
+  
+  //make uppercase if space is encountered 
+  for (var i=1; i<str.length; i++) {
+    if (modifiedStr.charAt(i)===' ') {
+      modifiedStr = modifiedStr.slice(0, i+1) + modifiedStr.charAt(i+1).toUpperCase() + modifiedStr.slice(i+2);
+    };
+
+  };
+
+  //return string
+  console.log(modifiedStr);
+}
+
+titleCase("I'm a little tea pot");
+titleCase("sHoRt AnD sToUt");
+titleCase("Short And Stout");
+titleCase("HERE IS MY HANDLE HERE IS MY SPOUT");
+
+/*
+//NOTE: look into
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+You could also add it to the String.prototype so you could chain it with other methods:
+
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+and use it like this:
+
+'string'.capitalizeFirstLetter() // String
+*/
