@@ -440,17 +440,96 @@ console.log('\n');
 
 
 
-// String.substring()
-//
+// String.substr(start[, length])
+//method returns the characters in a string beginning at the specified location through the specified number of characters.
+//If a negative number is given, it is treated as strLength + start where strLength is the length of the string (for example, if start is -3 it is treated as strLength - 3.)
 
 
 //Check if a string (first argument) ends with the given target string (second argument).
 
 function end(str, target) {
   //bool variable to check if string ends with the given target
-  var doesEnd;
+  var doesEnd = false;
 
-  console.log("Does '" + str + "' end in '" + target "'? " + doesEnd);
+  //return last characters of string and check with target
+  if (str.substr(-(target.length)) === target) {
+    doesEnd = true;
+  }
+
+  //output
+  console.log("Does '" + str + "' end in '" + target + "'? " + doesEnd);
 }
 
 end("Bastian", "n");
+end("He has to give me a new name", "me");
+end("If you want to save our world, you must hurry. We dont know how much longer we can withstand the nothing", "mountain");
+
+
+
+
+
+console.log('\n');
+
+
+
+
+// String.slice()
+//
+
+//Truncate a string (first argument) if it is longer than the given maximum string length (second argument). Return the truncated string with a "..." (included in the final count) 
+
+
+function truncate(str, num) {
+  
+  //if string length is larger than number, slice it and add "..." @ end
+  if (str.length > num) {
+    //if string to be sliced under 3 characters
+    if (str.length < 3) {
+     str = str.slice(0, num);
+     str += "...";
+     console.log(str);
+     return;
+    }
+    //else
+    str = str.slice(0, num-3);
+    str += "...";
+  }
+  //else return the same
+  
+  console.log(str);
+}
+
+truncate("A-tisket a-tasket A green and yellow basket", 11);
+truncate("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length); //should return "A-tisket a-tasket A green and yellow basket".
+truncate("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length + 2); //should return "A-tisket a-tasket A green and yellow basket".
+truncate("A-", 1);
+
+
+
+
+
+console.log('\n');
+
+
+// Array.split();
+
+//Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a multidimensional array.
+
+function chunk(arr, size) {
+  // Break it up.
+
+  //return first element as array
+
+  var newArray = [];
+
+  if (newArray.length > size) {
+
+    console.log("The array does not have enought elements to do the operation!");
+    return;
+  }
+
+
+  console.log(arr);
+}
+
+chunk(["a", "b", "c", "d"], 2);
