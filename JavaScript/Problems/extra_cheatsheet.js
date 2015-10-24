@@ -13,6 +13,12 @@
 
 - if (x !== "undefined") {(function () {return 10;})()}   //checking for a variable value before sending executing the function
 
+- declare (var x) outside a loop and (x = value) inside a loop VS just doing (var x = value) inside a loop
+http://stackoverflow.com/questions/3684923/javascript-variables-declare-outside-or-inside-loop
+There is absolutely no difference in meaning or performance, in JavaScript or ActionScript.
+VAR IS A DIRECTIVE TO THE PARSER AND NOT A COMMAND EXECUTED AT RUN-TIME. If a particular identifier has been declared var once or more anywhere in a function body(*), then all use of that identifier in the block will be referring to the local variable. It makes no difference whether value is declared to be var inside the loop, outside the loop, or both.
+it might make your code cleaner to read with var declaration outside the loop but it also makes your code longer and ads on extra process to run through on your clock.
+
 - === strict comparison while == converts the operands' type first and then makes the comparison
 
 - for using this:
@@ -290,7 +296,7 @@ console.log("The newly joined array into a string is: " + joinMe);
 //
 
 
-// String.toLowerCase
+// String.toLowerCase -> unlike .toLocaleLowerCase() which mutates the original string
 //
 
 
@@ -517,19 +523,58 @@ console.log('\n');
 
 function chunk(arr, size) {
   // Break it up.
-
-  //return first element as array
-
-  var newArray = [];
-
-  if (newArray.length > size) {
-
-    console.log("The array does not have enought elements to do the operation!");
-    return;
+  var finArray = [];
+  var pushArray = [];
+  var i=0;
+  //this has to repeat until there are no more elements in the array
+  for (var x = 1; x<arr.length/size+1; x++) {
+    for (true; i<size*x; i++) {
+      pushArray.push(arr[i]);
+      //avoid adding nulls in the last array
+      if (i >= arr.length-1) {break;}
+    } 
+    finArray.push(pushArray);
+    pushArray = [];
+    //size = size+size;
   }
-
-
-  console.log(arr);
+  console.log(finArray);
 }
 
 chunk(["a", "b", "c", "d"], 2);
+chunk([0, 1, 2, 3, 4, 5], 4);
+
+
+
+
+
+console.log('\n');
+
+
+// Array.filter() -> faster than Array.splice()
+//creates a new array with all elements that pass the test implemented by the provided function
+
+//Remove all falsy values (in javascript => false, null, 0, "", undefined, and NaN) from an array.
+
+
+function bouncer(arr) {
+  
+  arr = arr.filter(function (x) {
+    if (x !== false && x !== null && x !== 0 && x !== "" && x !== undefined && x !== NaN) {
+      return x;
+    }
+  });
+  console.log(arr);
+}
+
+bouncer([7, "ate", "", false, 9]);
+bouncer([false, null, 0, NaN, undefined, ""]);
+
+
+
+
+
+console.log('\n');
+
+
+
+// 
