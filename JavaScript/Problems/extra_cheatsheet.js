@@ -13,9 +13,13 @@
 
 - if (x !== "undefined") {(function () {return 10;})()}   //checking for a variable value before sending executing the function
 
+- === strict comparison while == converts the operands' type first and then makes the comparison
+
 - for using this:
   - strict-mode =
   - non-strict-mode = 
+
+- differences in function definition, array definition, ...
 
 - when to use JSON.stringify on console.log() .. also not on arrays
 
@@ -391,3 +395,62 @@ and use it like this:
 
 'string'.capitalizeFirstLetter() // String
 */
+
+
+
+
+console.log('\n');
+
+
+
+
+// 4 arrays into an array => find highest value in each array and store result in a final 4 element array
+
+function largestOfFour(arr) {
+  
+  //our final 4 champion element array with the champion variable
+  var finArray = [];
+  var champion = 0;
+  
+  //for each small array
+  arr.forEach(function (smallArray) {
+    //iterate through small array and find champion
+    smallArray.forEach(function (x) {
+      if (champion < x) {
+        champion = x;
+      }
+    });
+    //store champion into the final array and reset champion
+    finArray.push(champion);
+    champion = 0;
+  });
+  
+  console.log(finArray);
+}
+
+largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+largestOfFour([[4, 9, 1, 3], [13, 35, 18, 26], [32, 35, 97, 39], [1000000, 1001, 857, 1]]);
+
+
+
+
+
+console.log('\n');
+
+
+
+
+// String.substring()
+//
+
+
+//Check if a string (first argument) ends with the given target string (second argument).
+
+function end(str, target) {
+  //bool variable to check if string ends with the given target
+  var doesEnd;
+
+  console.log("Does '" + str + "' end in '" + target "'? " + doesEnd);
+}
+
+end("Bastian", "n");
