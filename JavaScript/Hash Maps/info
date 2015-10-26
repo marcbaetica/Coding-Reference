@@ -17,10 +17,10 @@ hash function maps keys "randomly" into slots (array indices) of table T (array)
 
 Every javascript object is a simple hashmap which only accepts string value as its key, so you could write your code as:
 
-var map = {};	       // add a item
-map[key1] = value1;    // or remove it
-delete map[key1];      // or determine whether a key exists
-key1 in map;
+var map = {};	       
+map[key1] = value1;       // add a item
+delete map[key1];         // or remove it
+key1 in map;              // or determine whether a key exists
 
 Object.keys(map).length	//to find the length of the map
 
