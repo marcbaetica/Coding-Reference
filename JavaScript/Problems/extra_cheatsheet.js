@@ -559,6 +559,7 @@ console.log('\n');
 function bouncer(arr) {
   
   arr = arr.filter(function (x) {
+    
     if (x !== false && x !== null && x !== 0 && x !== "" && x !== undefined && x !== NaN) {
       return x;
     }
@@ -577,4 +578,55 @@ console.log('\n');
 
 
 
-// 
+
+// Generate Fibonaci Sequence until value reaches 4 million
+// Return the total sum of all values that 
+
+//version 1 - initial solution
+var evenSum = 0;  //this gets returned and printed at the end 
+var variable1 = 0;  //first "pointer" variable starting at 0
+var variable2 = 1;  //second "pointer" variable starting at 1
+
+
+
+function returnEvenSum () {
+  console.log(4*10^6);
+  //generates Fibonaci Sequence two values at a time -> problem 
+  while (variable1 < 4*10^6 && variable2 < 4*10^6) {
+    //console.log(variable1);
+    
+
+    //two new numbers get generated in one loop
+    variable1 += variable2;
+    variable2 += variable1;
+
+    //checks if either of the two variables are even and adds that number to the final sum
+    checkIfEven(variable1);
+
+    //since this is evaluating two elements at the same time
+    //we need to break if the newly second element is larger than 4M 
+    if (variable2) {  //repeat this for both
+
+    }
+
+    //otherwise compare this number as well
+    checkIfEven(variable2);
+  }
+
+  //returns the final evenSum
+  return evenSum;
+}
+
+
+//checks if the new number is even and adds it to the final sum
+function checkIfEven (num) {
+  if (num%2 === 0) {
+    evenSum += num;
+  } 
+}
+
+returnEvenSum();
+console.log(evenSum); //final sum
+
+
+//version 2 - recursion
