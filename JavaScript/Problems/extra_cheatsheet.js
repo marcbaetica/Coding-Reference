@@ -29,6 +29,11 @@ it might make your code cleaner to read with var declaration outside the loop bu
 
 - when to use JSON.stringify on console.log() .. also not on arrays
 
+- s = Symbol("that's cool!");
+  Stringify(s);	//explicitly converse	=> "Symbol(that's cool!)"
+  s + "";	//implicitly converse	=> TypeError! (lol)
+  *** Kyle Simpsons' video talks and 6 books "You dont know JS" talk about all these ridiculous issies with COERCION in JS
+  
 */
 
 
