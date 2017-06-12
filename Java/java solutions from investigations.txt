@@ -1,0 +1,75 @@
+Q) When running Maven, I get this output: [WARNING] Unable to autodetect 'javac' path, using 'javac' from the environment.
+
+
+1) You will see this error message when Maven is being run using a JRE (Java Runtime Environment) which is a stripped down version of Java that can only execute Java code but can't compile sources.
+
+To fix the warning, install the SDK (Source Development Kit) and set the environment variable JAVA_HOME to the newly installed version of Java.
+
+You can put this into the file .mavenrc if you want; then only Maven will use this version of Java.
+
+
+2) If you're running Maven from Eclipse (e.g. Run As : Maven Install), make sure your environment is configured with correct JRE (you'll need JDK, not JRE). Go to Window -> Preferences -> Java -> Installed JRE. Select JDK if it's there or add JDK if it's not.
+
+
+3) try to set JAVA_HOME in the MyComputer-->Environment Variable
+
+
+
+Q) Point eclipse IDE to use another JRE / JDK other than one specified in JAVA_HOME
+
+
+1) Please try the eclipse.ini entry above the varargs:
+
+-vm C:\Program Files\Java\jdk1.8.0_111\binjavaw.exe
+
+Find the JVM: http://wiki.eclipse.org/FAQ_How_do_I_run_Eclipse%3F
+
+
+2) Project-->Properties--> Java Build Path--> Libraries--> JRE System Library.
+
+Now click Edit . Select Alternate JRE. Click Installed JRE. Provide path to your other JDK. Then FINISH.
+
+
+
+Q) What is a good Eclipse plugin for generating a class diagram (for a project)?
+
+
+1) Preference for ObjectAid Eclipse plug-in to generate Class Diagrams
+
+
+
+Q) In Java, why is it best practice to declare a logger static final? private static final Logger S_LOGGER
+
+
+1) private - so that no other class can hijack your logger
+static - so there is only one logger instance per class, also avoiding attempts to serialize loggers
+final - no need to change the logger over the lifetime of the class
+Also, I prefer name log to be as simple as possible, yet descriptive.
+
+EDIT: However there is an interesting exception to these rules:
+
+protected final Logger log = LoggerFactory.getLogger(getClass());
+as opposed to:
+
+private static final Logger log = LoggerFactory.getLogger(Foo.class);
+The former way allows you to use the same logger name (name of the actual class) in all classes throughout the inheritance hierarchy. So if Bar extends Foo, both will log to Bar logger. Some find it more intuitive.
+
+
+2) Check this blog post: Get Rid of Java Static Loggers. This is how you use slf4j with jcabi-log:
+
+import com.jcabi.log.Logger;
+class Foo {
+  void save(File f) {
+    Logger.info(this, "file %s saved successfully", f);
+  }
+}
+And never use that static noise any more.
+
+
+Using Java Logging API to create a Logger in each class that needs a log: http://tutorials.jenkov.com/java-logging/basic-usage.html
+
+
+
+
+run unit tests in maven
+https://www.mkyong.com/maven/how-to-run-unit-test-with-maven/
